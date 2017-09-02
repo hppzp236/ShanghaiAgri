@@ -1,0 +1,46 @@
+{:hook('body_start')}
+    <div class="header">
+        <div class="topbar">
+            <div class="container cf">
+                <div class="fl topbar-time">
+                    2017年5月13日 星期五
+                </div>
+                <div class="fr topbar-opr">
+                    <ul class="cf">
+                        <li><a href="#" onclick="SetHome(window.location)" href="javascript:void(0)" class="setHome">设为主页</a></li>
+                        <li>|</li>
+                        <li><a href="#" onclick="AddFavorite(window.location,document.title)" class="addFavor">加入收藏</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="logo-box">
+            <div class="container">
+                <a href="#" class="header-logo cf">
+                    <img class="fl" src="__TMPL__Public/Resource/img/zbs-logo.png" alt="">
+                    <span>农产品质量标准与检测技术研究所</span>
+                </a>
+            </div>
+        </div>
+        <div class="nav">
+            <div class="container">
+        <?php
+            $effected_id="main-menu";
+            $filetpl="<a href='\$href' target='\$target'>\$label</a>";
+            $foldertpl="<a href='\$href' target='\$target' class='dropdown-toggle' data-toggle='dropdown'>\$label <b class='caret'></b></a>";
+            $ul_class="dropdown-menu" ;
+            $li_class="li-class" ;
+            $style="nav-list cf";
+            $showlevel=6;
+            $dropdown='dropdown';
+            echo sp_get_menu("main",$effected_id,$filetpl,$foldertpl,$ul_class,$li_class,$style,$showlevel,$dropdown);
+        ?>
+        <div class="form-group cf">
+        <form method="post" action="{:U('portal/search/index')}">
+            <input type="search" name="keyword" placeholder="KeyWords"value="{:I('get.keyword')}" />
+            <button type="submit">搜索</button>
+        </form >
+        </div>
+            </div>
+        </div>
+    </div>

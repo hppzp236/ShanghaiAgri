@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>搜索 {$site_name}</title>
+    <link rel="stylesheet" href="__TMPL__Public/Resource/css/responsiveslides.css">
+    <link rel="stylesheet" href="__TMPL__Public/Resource/css/ui.css">
+</head>
+<body>
+<div class="page bg_white">
+<tc_include file="Public:nav" />
+    <div class="body">
+        <div class="article-list">
+				<php>
+					$result=sp_sql_posts_paged_bykeyword($keyword,"",6);
+				</php>
+            <div class="container">
+                <div class="hd">
+				<h3>'{$keyword}' 搜索结果 </h3>
+				<p>{$result['count']}条结果</p>
+                </div>
+                <div class="bd">
+
+                    <ul class="article-title-list">
+                    <volist name="result['posts']" id="vo">
+                        <li>
+                            <a href="{:leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']))}">
+                                <span class="time fr">{$vo.post_date}</span>
+                                {$vo.post_title}
+                            </a>
+                        </li>
+
+                      </volist>
+                    </ul>
+                    <div class="pager"><ul>{$result['page']}</ul></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>Copyright © 上海市农业科学院农产品质量标准与检测技术研究所, All rights reserved.</p>
+            <p>技术支持：上海市农科院质标所 电话：021-52630137 传真：021-62203612</p>
+        </div>
+    </div>
+</div>
+<script src="__TMPL__Public/Resource/js/jquery-1.7.1.js"></script>
+<script src="__TMPL__Public/Resource/js/responsiveslides.min.js"></script>
+<script src="__TMPL__Public/Resource/js/ui.js"></script>
+</body>
+</html>
